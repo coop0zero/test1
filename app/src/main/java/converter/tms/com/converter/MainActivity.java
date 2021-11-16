@@ -2,37 +2,37 @@ package converter.tms.com.converter;
 
 import android.app.Activity;
 import android.content.Intent;
-//import android.content.SharedPreferences;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-//import android.support.v7.app.AppCompatDelegate;
-//import android.text.method.ScrollingMovementMethod;
+import android.support.v7.app.AppCompatDelegate;
+import android.text.method.ScrollingMovementMethod;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-//import android.widget.Button;
-//import android.widget.ImageButton;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.widget.TextView;
 import java.math.BigInteger;
-import java.lang.Boolean;
-//import android.widget.CompoundButton;
+import android.widget.CompoundButton;
 
 public class MainActivity extends Activity {
 
-        private String[] ish = {"2-чной","8-чной","10-чной","16-чной"},
-                kon = {"2-чную","8-чную","10-чную","16-чную"};
+        private String[] ish = {"2-чной","8-чной","10-чной","16-чной"};
+        private String[] kon = {"2-чную","8-чную","10-чную","16-чную"};
 
 
     ClipboardManager clipboardManager ;
     ClipData clipData;
     TextView textCopy;
     String number;
+    ImageButton c_btn;
     int a;
-    int b;
+    int b;    
     Boolean check;
     EditText editText;
         
@@ -139,7 +139,7 @@ public class MainActivity extends Activity {
             if (number.matches("[0-1-]+"))
             {
                 textCopy.setTextColor(getResources().getColor(R.color.green));
-                String c = String.valueOf( new BigInteger(number, a).toString(b));
+                String c = new String(new BigInteger(number, a).toString(b));
                 textCopy.setText(String.valueOf(c.toUpperCase()));
             }
             else{
@@ -152,7 +152,7 @@ public class MainActivity extends Activity {
             if (number.matches("[0-7-]+"))
             {
                 textCopy.setTextColor(getResources().getColor(R.color.green));
-                String c = String.valueOf( new BigInteger(number, a).toString(b));
+                String c = new String(new BigInteger(number, a).toString(b));
                 textCopy.setText(String.valueOf(c.toUpperCase()));
             }
             else{
@@ -164,7 +164,7 @@ public class MainActivity extends Activity {
             if (number.matches("[0-9-]+"))
             {
                 textCopy.setTextColor(getResources().getColor(R.color.green));
-                String c = String.valueOf( new BigInteger(number, a).toString(b));
+                String c = new String(new BigInteger(number, a).toString(b));
                 textCopy.setText(String.valueOf(c.toUpperCase()));
             }
             else{
@@ -178,12 +178,12 @@ public class MainActivity extends Activity {
                 check=false;
                 if (number.matches("[0-9a-fA-F-]+")) {
                     textCopy.setTextColor(getResources().getColor(R.color.green));
-                    String c = String.valueOf( new BigInteger(number, a).toString(b));
+                    String c = new String(new BigInteger(number, a).toString(b));
                     textCopy.setText(String.valueOf(c.toUpperCase()));
                     check = true;
                 }
 
-            if (Boolean.TRUE.equals(check)) {
+                if (check == false) {
                     textCopy.setTextColor(getResources().getColor(R.color.red));
                     textCopy.setText(getResources().getString(R.string.errror));
                 }
@@ -194,6 +194,5 @@ public class MainActivity extends Activity {
         Intent intent = new Intent(this,HistoryActivity.class);
         startActivity(intent);
     }
-
 
 }
