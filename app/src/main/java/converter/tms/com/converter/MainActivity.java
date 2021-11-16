@@ -23,7 +23,8 @@ import java.lang.Boolean;
 
 public class MainActivity extends Activity {
 
-        private String[] ish = {"2-чной","8-чной","10-чной","16-чной"},
+        private String[]
+                ish = {"2-чной","8-чной","10-чной","16-чной"},
                 kon = {"2-чную","8-чную","10-чную","16-чную"};
 
 
