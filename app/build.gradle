@@ -1,4 +1,33 @@
+plugins {
+    id "org.sonarqube" version "3.3"
+    id 'com.android.application'
+}
+
 apply plugin: 'com.android.application'
+apply plugin: 'org.sonarqube'
+apply plugin: 'jacoco'
+//junitJacoco {
+//    jacocoVersion = '0.8.5' // type String
+//    ignoreProjects = [] // type String array
+//    excludes // type String List
+//    includeNoLocationClasses = false // type boolean
+//    includeInstrumentationCoverageInMergedReport = false // type boolean
+//    xml.enabled = true
+//    csv.enabled = true
+//    html.enabled = true
+//}
+sonarqube {
+    properties {
+        property "sonar.projectKey", "cooperative0zero_ConverterSS"
+        property "sonar.organization", "converter69"
+        property "sonar.projectName", "ConverterSS"
+        property "sonar.host.url", "https://sonarcloud.io"
+        property "sonar.java.coveragePlugin", "jacoco"
+        property "sonar.dynamicAnalysis", "reuseReports"
+        property "sonar.coverage.jacoco.xmlReportPaths", "${project.rootDir}/app/build/reports/jacoco/debug/jacoco.xml"
+        property "sonar.language", "java"
+    }
+}
 
 android {
     compileSdkVersion 31
@@ -6,23 +35,31 @@ android {
         applicationId "github.tms.com.MyApplication"
         minSdkVersion 19
         targetSdkVersion 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 11
+        versionName "The 1-st release"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            testCoverageEnabled true
+        }
+        debug {
+            testCoverageEnabled true
         }
     }
+    buildToolsVersion '30.0.2'
 }
 
+
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+    testImplementation 'org.mockito:mockito-core:4.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'com.android.support.test:rules:1.0.2'
 }
