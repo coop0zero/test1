@@ -5,16 +5,16 @@ plugins {
 apply plugin: 'com.android.application'
 apply plugin: 'org.sonarqube'
 apply plugin: 'jacoco'
-//junitJacoco {
-//    jacocoVersion = '0.8.5' // type String
-//    ignoreProjects = [] // type String array
-//    excludes // type String List
-//    includeNoLocationClasses = false // type boolean
-//    includeInstrumentationCoverageInMergedReport = false // type boolean
-//    xml.enabled = true
-//    csv.enabled = true
-//    html.enabled = true
-//}
+junitJacoco {
+    jacocoVersion = '0.8.3' // type String
+    ignoreProjects = [] // type String array
+    excludes // type String List
+    includeNoLocationClasses = false // type boolean
+    includeInstrumentationCoverageInMergedReport = false // type boolean
+    xml.enabled = true
+    csv.enabled = true
+    html.enabled = true
+}
 sonarqube {
     properties {
         property "sonar.projectKey", "coop0zero_test1"
