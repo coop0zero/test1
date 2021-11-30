@@ -23,6 +23,8 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
       - name: Cache Gradle packages
         uses: actions/cache@v1
         with:
@@ -33,5 +35,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: chmod +x  ./gradlew build sonarqube --info
+        run: ./gradlew build sonarqube --info
         
